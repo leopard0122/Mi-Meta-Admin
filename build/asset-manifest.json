@@ -1,0 +1,40 @@
+{
+  "files": {
+    "main.css": "/static/css/main.d0de758f.css",
+    "main.js": "/static/js/main.6e805ec8.js",
+    "static/media/landing.png": "/static/media/landing.61e2e9a0c5f8443d9965.png",
+    "static/media/explore-landing-bg.png": "/static/media/explore-landing-bg.08655d2e67ac0c626db5.png",
+    "static/media/nfts-bg.png": "/static/media/nfts-bg.02216c4bd2e0a1be92ce.png",
+    "static/media/nfts-bg-dark.png": "/static/media/nfts-bg-dark.621aa55eb05f7cf09721.png",
+    "static/media/collections-landing-bg.png": "/static/media/collections-landing-bg.f21058e4de1469f57aca.png",
+    "static/media/contact-bg.png": "/static/media/contact-bg.4c4c0d0a33051778ae25.png",
+    "static/media/Montserrat-Medium.ttf": "/static/media/Montserrat-Medium.3a0917345468c959207a.ttf",
+    "static/media/Roboto-Medium.ttf": "/static/media/Roboto-Medium.7429a63c09f79a1760b0.ttf",
+    "static/media/women.svg": "/static/media/women.92460addd4c0e83731336e00a47584b5.svg",
+    "static/media/revicons.eot": "/static/media/revicons.a77de540a38981833f9e.eot",
+    "static/media/revicons.ttf": "/static/media/revicons.57fd05d4ae650374c8de.ttf",
+    "static/media/revicons.woff": "/static/media/revicons.e8746a624ed098489406.woff",
+    "static/media/polygon_icon.svg": "/static/media/polygon_icon.fe4bbf2524bc3e3e725c783278f1fef9.svg",
+    "static/media/instagram.svg": "/static/media/instagram.9ff6e3cecc23871d151781470cf544fc.svg",
+    "static/media/Visit.svg": "/static/media/Visit.6e9c0d9b14e43492b2ae6fcd56a3c454.svg",
+    "static/media/solana_icon.svg": "/static/media/solana_icon.3d2f5a817a58b6344e2a3aa23b09b1c8.svg",
+    "static/media/Share.svg": "/static/media/Share.a127e8fdc5c4e8d52bcd346726418885.svg",
+    "static/media/discord.svg": "/static/media/discord.345d57d8c7198184e6b3733284c150de.svg",
+    "static/media/lock.svg": "/static/media/lock.0cd20c1ee4e2552bfaf572bb93727b6f.svg",
+    "static/media/heart.svg": "/static/media/heart.0bd651801148624eb1a36f81dc8250b5.svg",
+    "static/media/dot.svg": "/static/media/dot.435e8c46ddfa44fa92d37b4fd5a6b749.svg",
+    "static/media/twitter.svg": "/static/media/twitter.a489c07c28086629960ba8fa9e45afe2.svg",
+    "index.html": "/index.html",
+    "static/media/MiLogo.svg": "/static/media/MiLogo.cdf477cf8d86832b4f5905a5bd5de014.svg",
+    "static/media/warn.svg": "/static/media/warn.962e62c485b74a22aab1e251794f2880.svg",
+    "static/media/youtube.svg": "/static/media/youtube.e4c851847291677fc4fcaefdbc1cc64f.svg",
+    "static/media/chart_red_icon.svg": "/static/media/chart_red_icon.040bf288cb5783d1d3a1c51c069f0863.svg",
+    "static/media/chart_blue_icon.svg": "/static/media/chart_blue_icon.7722e45ab7990eb96d8a442303363961.svg",
+    "main.d0de758f.css.map": "/static/css/main.d0de758f.css.map",
+    "main.6e805ec8.js.map": "/static/js/main.6e805ec8.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.d0de758f.css",
+    "static/js/main.6e805ec8.js"
+  ]
+}
