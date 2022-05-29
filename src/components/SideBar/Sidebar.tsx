@@ -53,7 +53,7 @@ const Sidebar = () => {
         </Nav.Link>
       </div>
       <div>
-        <Nav.Link href="#action2" className="wallet-item">
+        <Nav.Link href="/apimanagement" className="wallet-item">
           <img alt="api" src="/icons/sidebar/api.svg" width={15} height={15} />
           <span className="sidebar-link-item ps-1">API Management</span>
         </Nav.Link>

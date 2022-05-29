@@ -37,7 +37,10 @@ import {
   NFTDetail,
   UserDetail,
   AdminProfile,
+  APIManagement,
+  // APILogDetail
 } from "../components";
+
 function ParseRoute(props: any) {
   if (props.layout) {
     return (
@@ -112,6 +115,23 @@ function Root() {
             element={
               <ParseRoute layout={true}>
                 <UserDetail />
+              </ParseRoute>
+            }
+          />
+          <Route
+            path="/apimanagement"
+            element={
+              <ParseRoute layout={true}>
+                <APIManagement />
+              </ParseRoute>
+            }
+          />
+         
+          <Route
+            path="/apilog_detail/:id"
+            element={
+              <ParseRoute layout={true}>
+                <APIManagement />
               </ParseRoute>
             }
           />
