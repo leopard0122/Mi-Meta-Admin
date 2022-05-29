@@ -124,7 +124,7 @@ function GlobalPermissions() {
               <Row>
                 <div className='logo_image_title mt-4 mb-2'>Full Access Admin</div>
                 {superAdminRole.map((item, i)=>
-                   <Col xl={3} lg={3} md={6} sm={6} className="currency_block">
+                   <Col xl={3} lg={3} md={6} sm={6} className="currency_block" key={i}>
                     <div className='logo_image_title mt-4 mb-2'>{item.name}</div>
                     <Custom_Chekbox check={item.value} changeFunc = {handleCheckBox} index = {i} type="superAdmin"/>
                   </Col>
@@ -137,7 +137,7 @@ function GlobalPermissions() {
               <Row>
                 <div className='logo_image_title mt-4 mb-2'>Administrator</div>
                 {adminRole.map((item, i)=>
-                   <Col xl={3} lg={3} md={6} sm={6} className="currency_block">
+                   <Col xl={3} lg={3} md={6} sm={6} className="currency_block" key={i}>
                     <div className='logo_image_title mt-4 mb-2'>{item.name}</div>
                     <Custom_Chekbox check={item.value} changeFunc = {handleCheckBox} index = {i} type="admin"/>
                   </Col>
@@ -150,7 +150,7 @@ function GlobalPermissions() {
               <Row>
                 <div className='logo_image_title mt-4 mb-2'>Manager</div>
                 {managerRole.map((item, i)=>
-                   <Col xl={3} lg={3} md={6} sm={6} className="currency_block">
+                   <Col xl={3} lg={3} md={6} sm={6} className="currency_block" key={i}>
                     <div className='logo_image_title mt-4 mb-2'>{item.name}</div>
                     <Custom_Chekbox check={item.value} changeFunc = {handleCheckBox} index = {i} type="manager"/>
                   </Col>

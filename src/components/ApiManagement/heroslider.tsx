@@ -60,6 +60,7 @@ const handleSubmit = (event:any) => {
   }
 
   console.log("inputValues");
+  console.log(inputValues);
   var tempcard =  cardItems;
   tempcard.push({...inputValues});
   setCardItem([...tempcard]);

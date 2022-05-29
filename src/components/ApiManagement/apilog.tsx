@@ -83,8 +83,8 @@ function ApiLog(props:any) {
         </Row>
       
         {logList.map((item,i)=>
-          <Row>
-          <Col xl={8} lg={8} md={12} sm={12}  className="mb-3" >
+          <Row key={i}>
+            <Col xl={8} lg={8} md={12} sm={12}  className="mb-3" >
               <Row>
                 <Col className="up_label">{item.time}</Col>
                 <Col className="up_label text-center">{item.result ? <img src="/icons/Check.svg"/> :""}</Col>

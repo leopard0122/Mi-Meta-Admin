@@ -251,7 +251,7 @@ function MenuSettings() {
             </Col>
             <Col  xl={7} lg={8} md={6} sm={9}>
               {menuItems.map((item,i)=>
-                <div className={`category_card me-3 ${!item.active ? "border-color-grey":""}`}>
+                <div className={`category_card me-3 ${!item.active ? "border-color-grey":""}`} key={i}>
                   <div className={`card_icon ${!item.active ? "color-grey":""}`} >x</div>
                   <div className={`card_content ${!item.active ? "color-grey":""}`}>{item.name}</div>
                 </div>

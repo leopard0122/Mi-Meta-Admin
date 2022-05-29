@@ -141,17 +141,20 @@ function CollectionIActivityPane(props: any) {
         <Row>
           <FilterCard id="Chains">
             <div className="custom-button-group">
-              {chainData.map((item) => (
-                <Button
-                  variant="secondary"
-                  className={`my-1 py-1 ${item.name === activeChain ? "button-active" : ""}`}
-                  onClick={() => setActiveChain(item.name)}
-                >
-                  <span className="px-1">
-                    <img src={item.image} style={{ width: 20 }} />
-                  </span>
-                  {item.name}
-                </Button>
+              {chainData.map((item,i) => (
+                <div key={i}>
+                  <Button
+                    variant="secondary"
+                    className={`my-1 py-1 ${item.name === activeChain ? "button-active" : ""}`}
+                    onClick={() => setActiveChain(item.name)}
+                  >
+                    <span className="px-1">
+                      <img src={item.image} style={{ width: 20 }} />
+                    </span>
+                    {item.name}
+                  </Button>
+                </div>
+                
               ))}
             </div>
           </FilterCard>

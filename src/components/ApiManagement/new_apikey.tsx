@@ -166,14 +166,14 @@ const submitHandle = (e:any) => {
               </Col>
             </Row>
             {keyPermission.map((item,i)=>
-            <Row className="d-flex align-items-center mb-3 mt-3" key={i}>
-              <Col xl={10} lg={10} md={10} sm={10}>
-                <div className='logo_image_title'>{item.name}</div>
-              </Col>
-              <Col xl={2} lg={2} md={2} sm={2} className="text-center">
-                <Custom_Chekbox check={item.value} changeFunc = {handleCheckBox} index = {i} />
-              </Col>
-            </Row>
+              <Row className="d-flex align-items-center mb-3 mt-3" key={i}>
+                <Col xl={10} lg={10} md={10} sm={10}>
+                  <div className='logo_image_title'>{item.name}</div>
+                </Col>
+                <Col xl={2} lg={2} md={2} sm={2} className="text-center">
+                  <Custom_Chekbox check={item.value} changeFunc = {handleCheckBox} index = {i} />
+                </Col>
+              </Row>
             )}
             
           </Col>
