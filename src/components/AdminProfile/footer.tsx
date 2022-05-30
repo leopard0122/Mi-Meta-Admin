@@ -27,13 +27,11 @@ const onLogoChagne = (e:any) => {
   let fileReader = new FileReader();
 
   fileReader.onloadend = () => {
-      console.log(fileReader.result)
       if (fileReader.result !== null) {
         setLogoImage(fileReader.result.toString())
       }
       
   };
-  console.log(fileReader.result)
   fileReader.readAsDataURL(file)
 };
 

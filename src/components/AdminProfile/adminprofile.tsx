@@ -16,6 +16,7 @@ import {GlobalCreate} from './global_create';
 import {GlobalMarketplace} from './global_marketplace';
 import {GlobalWallet} from './global_wallet';
 import {GlobalPermissions} from './global_permissions';
+import HorizontalExample from './drag';
 
 import CharBlueIcon from '../../assets/dashboard/chart_blue_icon.svg'
 import CharRedIcon from '../../assets/dashboard/chart_red_icon.svg'
@@ -47,13 +48,11 @@ const onImageChange = (e:any) => {
   let fileReader = new FileReader();
 
   fileReader.onloadend = () => {
-      console.log(fileReader.result)
       if (fileReader.result !== null) {
         setImagedFile(fileReader.result.toString())
       }
       
   };
-  console.log(fileReader.result)
   fileReader.readAsDataURL(file)
 };
 const onBannerChange = (e:any) => {
@@ -64,13 +63,11 @@ const onBannerChange = (e:any) => {
   let fileReader = new FileReader();
 
   fileReader.onloadend = () => {
-      console.log(fileReader.result)
       if (fileReader.result !== null) {
         setBannerFile(fileReader.result.toString())
       }
       
   };
-  console.log(fileReader.result)
   fileReader.readAsDataURL(file)
 };
   return (
@@ -120,6 +117,9 @@ const onBannerChange = (e:any) => {
                 </Tab>
                 <Tab eventKey="role" title="Roles/Permissions">
                   <GlobalPermissions />
+                </Tab>
+                <Tab eventKey="drag" title="Drag">
+                  <HorizontalExample />
                 </Tab>
               </Tabs>
             </div>

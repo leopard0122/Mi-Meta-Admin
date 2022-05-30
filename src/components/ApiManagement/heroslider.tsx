@@ -30,26 +30,22 @@ function HeroSlider() {
   
 const onUploadChange = (e:any) => {
   e.preventDefault();
-  console.log("background image")
-  let file = e.target.files[0];
-  let fileReader = new FileReader();
+  // let file = e.target.files[0];
+  // let fileReader = new FileReader();
 
-  fileReader.onloadend = () => {
-      console.log(fileReader.result)
-      if (fileReader.result !== null) {
-        setSlideImage(fileReader.result.toString())
-        setInputValues({image:fileReader.result.toString()})
-      }
+  // fileReader.onloadend = () => {
+  //     if (fileReader.result !== null) {
+  //       setSlideImage(fileReader.result.toString())
+  //       // setInputValues({image:fileReader.result.toString()})
+  //     }
       
-  };
-  console.log(fileReader.result)
-  fileReader.readAsDataURL(file)
+  // };
+  // fileReader.readAsDataURL(file)
 };
 
 const slideImageSelect = () => {
-  const profileImage = document.getElementById("image");
+  const profileImage = document.getElementById("slide_image");
   profileImage?.click()
-  console.log(profileImage)
 }
 
 const handleSubmit = (event:any) => {
@@ -58,22 +54,22 @@ const handleSubmit = (event:any) => {
     setIsSlideEmpty(true);
     return
   }
-
-  console.log("inputValues");
-  console.log(inputValues);
   var tempcard =  cardItems;
   tempcard.push({...inputValues});
   setCardItem([...tempcard]);
   setIsSlideEmpty(false);
-  console.log("cardItems");
-  console.log(cardItems[1]);
+  
 };
 
 const handleChange = (e:any)=> {
   const temp: {[key:string]: string} = inputValues;
   temp[e.target.name] = e.target.value ;
-  setInputValues(temp);
+  temp["image"] = slideImage;
+  setInputValues({...temp});
 }
+
+console.log("cardItems");
+console.log(cardItems);
 
   return (
     <Row className='slider'>
@@ -86,7 +82,7 @@ const handleChange = (e:any)=> {
           </div>
         </div>
         <div className='slide_card me-3 d-flex'>
-          {cardItems.length > 0 && cardItems.map((card:object, i:number) =>
+          {cardItems.length > 0 && cardItems.map((item, i) =>
             <div key={i}>
               <div className='me-2'>
                 <div className='slide_name mb-1'>1.Bored Panda Feature</div>
@@ -150,8 +146,8 @@ const handleChange = (e:any)=> {
                 {slideImage == "" && <div className="upload_img" style={{border:"1px solid #C4C4C4"}} onClick={slideImageSelect} />}
                 <div className='d-flex'>
                   <Form.Group className='me-1'>
-                    <Form.Label for="image" className='upload_button'>Upload</Form.Label>
-                    <Form.Control type="file" className="create-file-select  mt-4" name="image"  id="image" onChange={onUploadChange} hidden/>
+                    <Form.Label for="slide_image" className='upload_button'>Upload</Form.Label>
+                    <Form.Control type="file" className="create-file-select  mt-4" name="slide_image"  id="slide_image" onChange={onUploadChange} hidden/>
                   </Form.Group>
                   <Form.Group>
                     <Button className='upload_button' onClick={()=>setSlideImage("")}>Remove</Button>

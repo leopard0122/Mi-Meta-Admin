@@ -20,21 +20,7 @@ function Communication() {
   const [contactEnable, setContactEnable] = useState(true);
   const [inputValues, setInputValues] = useState({});
   
-// const onImageChange = (e:any) => {
-//   e.preventDefault();
-//   let file = e.target.files[0];
-//   let fileReader = new FileReader();
 
-//   fileReader.onloadend = () => {
-//       console.log(fileReader.result)
-//       if (fileReader.result !== null) {
-//         setImagedFile(fileReader.result.toString())
-//       }
-      
-//   };
-//   console.log(fileReader.result)
-//   fileReader.readAsDataURL(file)
-// };
 
 const handleChange = (e:any)=> {
   console.log("here");
@@ -44,13 +30,11 @@ const handleChange = (e:any)=> {
     let file = e.target.files[0];
     let fileReader = new FileReader();
     fileReader.onloadend = () => {
-      console.log(fileReader.result)
       if (fileReader.result !== null) {
         setImagedFile(fileReader.result.toString())
         temp["gradientimage"] = fileReader.result.toString();
       }
   };
-  console.log(fileReader.result)
   fileReader.readAsDataURL(file)
   }
   setInputValues(temp);

@@ -49,7 +49,6 @@ function GlobalProfile() {
         }
         
     };
-    console.log(fileReader.result)
     fileReader.readAsDataURL(file)
   };
 

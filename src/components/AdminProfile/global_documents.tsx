@@ -27,7 +27,6 @@ const onUploadChange = (e:any) => {
   let file = e.target.files[0];
   let fileReader = new FileReader();
   fileReader.onloadend = () => {
-      console.log(fileReader.result)
       if (fileReader.result !== null) {
         setImagedFile(fileReader.result.toString())
       }
