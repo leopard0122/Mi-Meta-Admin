@@ -4,6 +4,12 @@
 
 @import "./_variables.scss";
 .login {
+//   input:-internal-autofill-selected {
+//     appearance: menulist-button;
+//     background-image: none !important;
+//     background-color: black!important;
+//     color: fieldtext !important;
+// }
   .form-control {
     background-color: transparent;
   }

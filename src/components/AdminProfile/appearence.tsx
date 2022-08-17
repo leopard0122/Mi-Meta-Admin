@@ -2,9 +2,10 @@ import './adminprofile.style.scss';
 // import './home.style.css';
 import {useState, useContext} from 'react'
 import { ThemeContext } from '../../providers';
-import { Container, Button, Row, Col, Form, Image, Tabs, Tab, Stack, Card, Dropdown } from 'react-bootstrap';
+import { Container, Button, Row, Col, Form, Image, Tabs, Tab, Stack, Card, Dropdown, Toast } from 'react-bootstrap';
 
-
+import axios from 'axios';
+import Config from '../../config'
 
 
 function Appearence() {
@@ -18,13 +19,15 @@ function Appearence() {
   const [logoDark, setLogoDark] = useState("");
   const [isDarkEmpty, setIsDarkEmpty] = useState(false);
   const [isLightEmpty, setIsLightEmpty] = useState(false);
-  const [validated, setValidated] = useState(false);
   const [mainColor, setMainColor] = useState("#8D3695");
   const [secondColor, setSecondColor] = useState("#F66C7D");
   const [gradienColor1, setGradientColor1] = useState("#4CE1B6");
   const [gradienColor2, setGradientColor2] = useState("#70BBFD");
 
-  const [fontType, setFontType] = useState(0);
+  const [lightImage, setLightImage] = useState("");
+  const [darkImage, setDarkImage] = useState("");
+
+  const [fontType, setFontType] = useState("Montserrat");
 
   const mystyle = {
     background: `linear-gradient(180deg,${gradienColor1} 0%, ${gradienColor2} 100%)`,
@@ -32,11 +35,15 @@ function Appearence() {
     height:"25px"
   }
 
+
+
  
   
 const onLogoLightChange = (e:any) => {
   e.preventDefault();
   let file = e.target.files[0];
+  setLightImage(file);
+  console.log(file);
   let fileReader = new FileReader();
 
   fileReader.onloadend = () => {
@@ -51,6 +58,7 @@ const onLogoLightChange = (e:any) => {
 const onLogoDarkChange = (e:any) => {
   e.preventDefault();
   let file = e.target.files[0];
+  setDarkImage(file);
   let fileReader = new FileReader();
 
   fileReader.onloadend = () => {
@@ -80,12 +88,23 @@ const handleSubmit = (event:any) => {
   if (logoDark === "") {
     setIsDarkEmpty(true)
   }
-  console.log("------------------");
-  console.log(logoLight);
-  console.log(logoDark);
-  console.log("fontType");
-  console.log(fontType);
-  console.log(mainColor,secondColor, gradienColor1,gradienColor2);
+ 
+  const formData = new FormData();
+  formData.append('lightImage', lightImage);
+  formData.append('darkImage', darkImage);
+  formData.append('fontType', fontType);
+  formData.append('mainColor', mainColor);
+  formData.append('secondColor', secondColor);
+  formData.append('gradienColor1', gradienColor1);
+  formData.append('gradienColor2', gradienColor1);
+
+  axios.post(`${Config.baseUrl}/api/globalsettings/appearence`, formData).then(function(response){
+    console.log("response.data")
+    console.log(response.data.result)
+
+  });
+ 
+
 };
 
   return (
@@ -113,7 +132,7 @@ const handleSubmit = (event:any) => {
                         <Button className='upload_button' onClick={removeLight}>Remove</Button>
                       </Form.Group>
                     </div>
-                    {isLightEmpty == true && <div className="text-danger">Please upload Logo Image-Light</div>}
+                    {isLightEmpty == true && <div className="text-danger font_size_10">Please upload Logo Image-Light</div>}
                     
                   </div>
                 </Col>
@@ -136,7 +155,7 @@ const handleSubmit = (event:any) => {
                         <Button className='upload_button' onClick={removeDark}>Remove</Button>
                       </Form.Group>
                     </div>
-                    {isDarkEmpty == true && <div className="text-danger">Please upload Logo Image-Light</div>}
+                    {isDarkEmpty == true && <div className="text-danger font_size_10">Please upload Logo Image-Light</div>}
 
                   </div>
                 </Col>
@@ -149,10 +168,10 @@ const handleSubmit = (event:any) => {
               <div className='logo_image_title w-15'>Font Family</div>
               <Form.Group className='w-70' >
                 <Form.Select aria-label="Default select example" className='placeholder_bg' name="fontfamily" defaultValue={fontType} onChange={(event)=>handleSelectChange(event)}>
-                  <option style={{background:"#212529", color:"white"}} value="0">Montserrat</option>
-                  <option style={{background:"#212529", color:"white"}} value="1">Robot</option>
-                  <option style={{background:"#212529", color:"white"}} value="2">Italic</option>
-                  <option style={{background:"#212529", color:"white"}} value="3">Arial</option>
+                  <option style={{background:"#212529", color:"white"}} value="Montserrat">Montserrat</option>
+                  <option style={{background:"#212529", color:"white"}} value="Robot">Robot</option>
+                  <option style={{background:"#212529", color:"white"}} value="Italic">Italic</option>
+                  <option style={{background:"#212529", color:"white"}} value="Arial">Arial</option>
                 </Form.Select>
               </Form.Group>
             </div>

@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { Container } from "react-bootstrap";
 import { ThemeContext } from "../providers";
 import {
@@ -42,6 +42,8 @@ import {
 } from "../components";
 
 function ParseRoute(props: any) {
+  
+  
   if (props.layout) {
     return (
       <Wrapper>
@@ -54,13 +56,19 @@ function ParseRoute(props: any) {
   }
 }
 
+
+
+const isAuth = localStorage.getItem('id');
+
+
+
+
+
 function Root() {
   const { theme } = useContext(ThemeContext);
   return (
     <Container className={`App ${theme}`} fluid>
-      {/* <Wrapper>  */}
       <BrowserRouter>
-        {/* <Header /> */}
         <Routes>
           <Route
             path="/"
@@ -78,6 +86,7 @@ function Root() {
               </ParseRoute>
             }
           />
+          {}
           <Route
             path="/forgetpassword"
             element={
@@ -88,10 +97,10 @@ function Root() {
           />
           <Route
             path="/dashboard"
-            element={
+            element={ 
               <ParseRoute layout={true}>
-                <Home />
-              </ParseRoute>
+                 <Home />
+              </ParseRoute> 
             }
           />
           <Route

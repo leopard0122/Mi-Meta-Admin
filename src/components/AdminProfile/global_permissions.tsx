@@ -168,25 +168,25 @@ function GlobalPermissions() {
               </Row>
               <Row>
                 <Form.Group className="input_form" controlId="name">
-                  <Form.Label className='up_label'>Name</Form.Label>
+                  <Form.Label className='up_label' style={{width:"90px"}}>Name</Form.Label>
                   <Form.Control type="text" className='placeholder_bg' placeholder="Terry Hogan" name="name" onChange = {(e=>handleChange(e))}  />
                 </Form.Group>
-                <Form.Group className="input_form" controlId="username" style={{marginBottom:"2px"}} >
-                  <Form.Label className='up_label'>Username</Form.Label>
+                <Form.Group className="input_form" controlId="username" >
+                  <Form.Label className='up_label' style={{width:"90px"}}>Username</Form.Label>
                   <Form.Control type="text" placeholder="Admin" className='placeholder_bg'  name="username" onChange = {(e=>handleChange(e))} />
                 </Form.Group>
-                {validated && <div className='text-danger' style={{marginLeft:"74px",fontSize:"10px"}}>Username can not be Admin, Administrator, or User.  Please try again.</div>}
-                <Form.Group className="input_form" controlId="displayname">
-                  <Form.Label className='up_label'>Display Nmae</Form.Label>
+                {validated && <div className='text-danger' style={{marginLeft:"90px",fontSize:"10px", marginTop:'-19px'}}>Username can not be Admin, Administrator, or User.  Please try again.</div>}
+                <Form.Group className="input_form" controlId="displayname" >
+                  <Form.Label className='up_label' style={{width:"90px"}}>Display Nmae</Form.Label>
                   <Form.Control type="text" placeholder="TerryAdmin" className='placeholder_bg' name="displayname" onChange = {(e=>handleChange(e))} />
                 </Form.Group>
                 
                 <Form.Group className="input_form" controlId="email">
-                  <Form.Label className='up_label'>Email</Form.Label>
+                  <Form.Label className='up_label' style={{width:"90px"}}>Email</Form.Label>
                   <Form.Control type="email" placeholder="example@mail.com" className='placeholder_bg' name="email" onChange = {(e=>handleChange(e))} />
                 </Form.Group>
                 <Form.Group className="input_form" controlId="password" style={{position:"relative"}}>
-                  <Form.Label className='up_label'>Password</Form.Label>
+                  <Form.Label className='up_label' style={{width:"90px"}}>Password</Form.Label>
                   <Form.Control  type={showPassword ? "text" : "password"} placeholder="Enter email address" className='placeholder_bg'  name="password" onChange = {(e=>handleChange(e))}  />
                   {showPassword ? (
                       <img src="/icons/eye.svg" width={15} alt="eye" onClick={handleClickShowPassword} style={{position:"absolute", right:"20px"}} />
@@ -196,11 +196,17 @@ function GlobalPermissions() {
                 </Form.Group>
                
                 <Form.Group className="input_form" controlId="role">
-                  <Form.Label className='up_label'>Role</Form.Label>
+                  <Form.Label className='up_label' style={{width:"90px"}}>Role</Form.Label>
                   <Form.Control type="text" placeholder="Manager" className='placeholder_bg' name="role" onChange = {(e=>handleChange(e))} />
+                  {/* <Form.Select aria-label="Default select example" className='placeholder_bg' name="fontfamily">
+                    <option style={{background:"#212529", color:"white"}} value="Montserrat">Montserrat</option>
+                    <option style={{background:"#212529", color:"white"}} value="Robot">Robot</option>
+                    <option style={{background:"#212529", color:"white"}} value="Italic">Italic</option>
+                    <option style={{background:"#212529", color:"white"}} value="Arial">Arial</option>
+                  </Form.Select> */}
                 </Form.Group>
                 <Form.Group className="input_form" controlId="whitelistip">
-                  <Form.Label className='up_label'>Whitelist IP</Form.Label>
+                  <Form.Label className='up_label' style={{width:"90px"}}>Whitelist IP</Form.Label>
                   <Form.Control type="text" placeholder="140.112.1.1" className='placeholder_bg' name="ip" onChange = {(e=>handleChange(e))} />
                 </Form.Group>
               </Row>

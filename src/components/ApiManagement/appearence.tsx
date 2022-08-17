@@ -3,6 +3,8 @@ import './adminprofile.style.scss';
 import {useState, useContext} from 'react'
 import { ThemeContext } from '../../providers';
 import { Container, Button, Row, Col, Form, Image, Tabs, Tab, Stack, Card, Dropdown } from 'react-bootstrap';
+import axios from 'axios'
+
 
 
 
@@ -80,12 +82,17 @@ const handleSubmit = (event:any) => {
   if (logoDark === "") {
     setIsDarkEmpty(true)
   }
-  console.log("------------------");
-  console.log(logoLight);
-  console.log(logoDark);
-  console.log("fontType");
-  console.log(fontType);
-  console.log(mainColor,secondColor, gradienColor1,gradienColor2);
+  // console.log("------------------");
+  // console.log(logoLight);
+  // console.log(logoDark);
+  // console.log("fontType");
+  // console.log(fontType);
+  // console.log(mainColor,secondColor, gradienColor1,gradienColor2);
+  axios.post("http://localhost:5000/api/globalsettings/appearence", mainColor).then(function(response) {
+    console.log("res is ", response)
+  })
+
+
 };
 
   return (
@@ -98,7 +105,7 @@ const handleSubmit = (event:any) => {
               <Row className="d-flex align-items-center mb-3">
                 <Col xl={2} lg={6} md={6} sm={6}>
                   <div className='logo_image_title'>Logo Image-Light</div>
-                  <div className='logo_image_subtitle'>Choose a logo to display in light mode</div>
+                  <div className='logo_image_subtitle'>Choose a logo to display in light modeadfadfadsfasdf</div>
                 </Col>
                 <Col xl={10} lg={6} md={6} sm={6}>
                   <div  className='upload_card align-items-logoLight'>
@@ -136,7 +143,7 @@ const handleSubmit = (event:any) => {
                         <Button className='upload_button' onClick={removeDark}>Remove</Button>
                       </Form.Group>
                     </div>
-                    {isDarkEmpty == true && <div className="text-danger">Please upload Logo Image-Light</div>}
+                    {isDarkEmpty == true && <div className="text-danger font_size_10">Please upload Logo Image-Light</div>}
 
                   </div>
                 </Col>
@@ -149,9 +156,9 @@ const handleSubmit = (event:any) => {
               <div className='logo_image_title w-15'>Font Family</div>
               <Form.Group className='w-70' >
                 <Form.Select aria-label="Default select example" className='placeholder_bg' name="fontfamily" defaultValue={fontType} onChange={(event)=>handleSelectChange(event)}>
-                  <option style={{background:"#212529", color:"white"}} value="0">Montserrat</option>
+                  <option style={{background:"#212529", color:"white"}} value="0" >Montserrat</option>
                   <option style={{background:"#212529", color:"white"}} value="1">Robot</option>
-                  <option style={{background:"#212529", color:"white"}} value="2">Italic</option>
+                  <option style={{background:"#212529", color:"white"}} value="2" >Italic</option>
                   <option style={{background:"#212529", color:"white"}} value="3">Arial</option>
                 </Form.Select>
               </Form.Group>
@@ -260,4 +267,4 @@ const handleSubmit = (event:any) => {
   );
 }
 
-export { Appearence};
+// export { Appearence};

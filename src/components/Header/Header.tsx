@@ -14,8 +14,7 @@ import {
   InputGroup,
   Stack,
 } from "react-bootstrap";
-import Sidebar from "../SideBar/Sidebar1";
-// let isOpen = false;
+import { getAuth, signOut } from "firebase/auth";
 
 const posts = [
   { id: "1", name: "This first post is about React", image: "/images/nft/1.png", count: "199" },
@@ -90,6 +89,22 @@ function Header() {
     setDropitem(val.toLowerCase());
   };
 
+  const logout = (e:any) => {
+    e.preventDefault();
+    console.log("logout")
+    localStorage.removeItem('id');
+    localStorage.removeItem('authority');
+    const auth = getAuth();
+    signOut(auth).then(() => {
+      // Sign-out successful.
+    }).catch((error:any) => {
+      // An error happened.
+    });
+    navigate('/login')
+
+
+  }
+
   const filteredPosts = filterPosts(posts, searchval);
 
   return (
@@ -121,7 +136,7 @@ function Header() {
             <Nav className="me-auto my-2 my-lg-0" style={{ maxHeight: "140px" }} navbarScroll>
               <Nav.Link as="span">
                 <Link
-                  to="/activity"
+                  to="/notification"
                   className={`nav-link ${menuselected === MENUITEM[1] ? "selected_menu" : ""}`}
                   onClick={() => navigate2discover(MENUITEM[1])}
                 >
@@ -130,7 +145,7 @@ function Header() {
               </Nav.Link>
               <Nav.Link as="span">
                 <Link
-                  to="/learn"
+                  to="/message"
                   className={`nav-link ${menuselected === MENUITEM[2] ? "selected_menu" : ""}`}
                   onClick={() => navigate2discover(MENUITEM[2])}
                 >
@@ -158,7 +173,7 @@ function Header() {
                   className="avatar-dropdown-item"
                   onClick={() => subitemclick("all nft")}
                 >
-                  <Link to="/assets">Log out</Link>
+                  <Link to="#" onClick={(e)=>logout(e)}>Log out</Link>
                 </NavDropdown.Item>
               </NavDropdown>
 

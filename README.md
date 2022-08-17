@@ -1,4 +1,4 @@
-# mi-meta nft marketplace frontend
+# mi-meta nft marketplace admin
 
 ## environment
 `node 14.18.3`

@@ -10,18 +10,59 @@ import {
   InputGroup,
   FormControl,
 } from "react-bootstrap";
-import React, { Component, useContext, useState } from "react";
+import React, { Component, useContext, useState, useEffect } from "react";
 
 import { useNavigate } from "react-router-dom";
 // import { BsFillPersonFill } from "react-icons/bs";
 // import { MdOutlinePersonOutline, MdOutlineVisibility, MdOutlineVisibilityOff, MdOutlineVpnKey} from "react-icons/md";
 import "../styles/adminlogin.scss";
+import axios from 'axios'
+import Config from '../config'
+import { toast } from 'react-toastify';
+
+import { initializeApp } from 'firebase/app';
+import { getAuth, GoogleAuthProvider, signInWithPopup, signInWithEmailAndPassword, sendEmailVerification  } from "firebase/auth";
+import {firebaseConfig} from "../utils/service_config";
 
 const SignIn = () => {
   const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
-  const [inputValues, setInputValues] = useState({});
   const [errors,setErrors] = useState({});
+  const [email,setEmail] = useState("");
+  const [password,setPassword] = useState("");
+
+  
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
+  
+  const google_provider = new GoogleAuthProvider();
+  google_provider.setCustomParameters({ prompt: 'select_account' });
+
+  const googleLogin = () => {
+    console.log("clicked")
+    signInWithPopup(auth, google_provider)
+    .then((result) => {
+      // This gives you a Google Access Token. You can use it to access the Google API.
+      // const credential = GoogleAuthProvider.credentialFromResult(result);
+      // const token = credential.accessToken;
+      // The signed-in user info.
+      const user = result.user;
+      console.log("user info")
+      console.log(user)
+      navigate('/dashboard');
+      // ...
+    }).catch((error) => {
+      // Handle Errors here.
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      // The email of the user's account used.
+      const email = error.customData.email;
+      // The AuthCredential type that was used.
+      const credential = GoogleAuthProvider.credentialFromError(error);
+      // ...
+  });
+  }
+  
 
   const handleClickShowPassword = () => {
     const show = !showPassword;
@@ -29,59 +70,62 @@ const SignIn = () => {
   };
   const handleSubmit=(e:any)=> {
     e.preventDefault();
-    console.log("prevent default")
     if(validate()){
-      let input: {[key:string]: string} = {};
-      input["name"] = "";
-      input["password"] = "";
-      setInputValues(input)
-      alert('Demo Form is submitted');
+      // signInWithEmailAndPassword(auth, email, password)
+      //   .then((userCredential) => {
+      //     // Signed in 
+      //     const user = userCredential.user;
+      //     if(!user.emailVerified) {
+      //     }
+      //     // ...
+      //   })
+      //   .catch((error) => {
+      //     const errorCode = error.code;
+      //     const errorMessage = error.message;
+      // });
+      let body = {email:email, password:password}
+      axios.post(`${Config.baseUrl}/api/auth/customer_login`, body).then(function(res) {
+
+          localStorage.setItem("authority", res.data.authority);
+          localStorage.setItem("id", res.data.user_id);
+          navigate('/dashboard')
+
+      }).catch(function(err){
+        console.log(err.response.data)
+        // toast.info(err.response.data);
+        alert(err.response.data)
+      });
     }
-    
   }
   const validate=()=> {
-    const tempvalue: {[key:string]: string} = inputValues;
     const temperrors: {[key:string]: string} = {};
     let isValid = true;
+    let re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
  
-    if (!tempvalue["name"]) {
+    if (!email) {
       isValid = false;
-      temperrors["name"] = "Please enter your name.";
+      temperrors["email"] = "Please enter your email.";
+    }
+    else if (!re.test(email) ) {
+      isValid = false;
+      temperrors["email"] = "Please input email format.";
     }
 
-    if (typeof tempvalue["name"] !== "undefined") {
-      const re = /^\S*$/;
-      if(tempvalue["name"].length < 6 || !re.test(tempvalue["name"])){
-          isValid = false;
-          temperrors["name"] = "Please enter valid name.";
-      }
-    }
 
-    if (!tempvalue["password"]) {
+    if (!password) {
       isValid = false;
       temperrors["password"] = "Please enter your password.";
     }
 
-    if (typeof tempvalue["password"] !== "undefined") {
-        isValid = false;
-        temperrors["password"] = "Please enter your password.";
-    }
     setErrors(temperrors);
 
     return isValid;
   }
-
-
-  const handleChange = (e:any)=> {
-     const temp: {[key:string]: string} = inputValues;
-      temp[e.target.name] = e.target.value ;
-      setInputValues(temp);
-  }
-
-  console.log("inputValues");
-  console.log(inputValues);
-  console.log(errors);
   const displayerrors: {[key:string]: string} = errors;
+
+
+ 
+ 
   return (
     <div className="login w-100">
       <img
@@ -91,11 +135,11 @@ const SignIn = () => {
         alt="back"
       />
       <div className="notfound-container w-100">
-        <form className="login_form" onSubmit={(e)=>handleSubmit}>
+        <Form className="login_form" onSubmit={(e)=>handleSubmit} autoComplete="off">
           <div style={{ textAlign: "center" }}>
             <Image src="/icons/logo.svg" className="logo_img mb-5" />
           </div>
-          <div className="white mb-2">name</div>
+          <div className="white mb-2">Username </div>
           <InputGroup className="mb-3">
             <InputGroup.Text
               id="basic-addon1"
@@ -104,15 +148,15 @@ const SignIn = () => {
               <img src="/icons/account.svg" alt="user" width={15} />
             </InputGroup.Text>
             <FormControl
-              placeholder="Name"
-              name="name"
+              placeholder="Email"
+              name="email"
               aria-describedby="basic-addon1"
-              style={{ borderLeft: "none", paddingLeft: "7px" }}
-              onChange={(e)=>handleChange(e)}
+              style={{ borderLeft: "none", paddingLeft: "7px", color:"white" }}
+              onChange={(e)=>setEmail(e.target.value)}
             />
             
           </InputGroup>
-          <div className="text-danger" style={{marginTop:"-10px "}}>{displayerrors.name}</div>
+          <div className="text-danger" style={{marginTop:"-14px", fontSize:"12px"}}>{displayerrors.email}</div>
           <div className="white mb-2">Password</div>
           <InputGroup>
             <InputGroup.Text
@@ -127,19 +171,19 @@ const SignIn = () => {
              
               name="password"
               aria-describedby="basic-addon1"
-              style={{ borderLeft: "none", borderRight: "none", paddingLeft: "7px" }}
+              style={{ borderLeft: "none", borderRight: "none", paddingLeft: "7px" ,color:"white" }}
               type={showPassword ? "text" : "password"}
-              onChange={(e)=>handleChange(e)}
+              onChange={(e)=>setPassword(e.target.value)}
             />
             <InputGroup.Text style={{ color: "#999999", borderLeft: "none" }}>
               {showPassword ? (
-                <img src="/icons/eye.svg" width={15} alt="eye" onClick={handleClickShowPassword} />
+                <img src="/icons/eye-slash.svg" width={15} alt="eye" onClick={handleClickShowPassword} />
               ) : (
-                <img src="/icons/eye.svg" alt="eye" onClick={handleClickShowPassword} />
+                <img src="/icons/eye.svg" width={15} alt="eye-slash" onClick={handleClickShowPassword} />
               )}
             </InputGroup.Text>
           </InputGroup>
-          <div className="text-danger">{displayerrors.password}</div>
+          <div className="text-danger" style={{fontSize:"12px"}}>{displayerrors.password}</div>
           <div className="mb-1" style={{ textAlign: "right" }}>
             <a  href="/forgetpassword" style={{ color: "#70BBFD", textDecoration: "none", textAlign: "right" }}>
               Forget password?
@@ -175,13 +219,13 @@ const SignIn = () => {
                 {" "}
                 <img src="/icons/facebook.png" style={{ height: "50px" }} />
               </div>
-              <div className="pr-10">
+              <div className="pr-10" onClick={()=>googleLogin()} >
                 {" "}
                 <img src="/icons/google.png" style={{ height: "50px" }} />
               </div>
             </Stack>
           </div>
-        </form>
+        </Form>
       </div>
     </div>
   );

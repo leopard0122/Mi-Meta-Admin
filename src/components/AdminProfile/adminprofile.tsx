@@ -16,7 +16,6 @@ import {GlobalCreate} from './global_create';
 import {GlobalMarketplace} from './global_marketplace';
 import {GlobalWallet} from './global_wallet';
 import {GlobalPermissions} from './global_permissions';
-import HorizontalExample from './drag';
 
 import CharBlueIcon from '../../assets/dashboard/chart_blue_icon.svg'
 import CharRedIcon from '../../assets/dashboard/chart_red_icon.svg'
@@ -118,9 +117,9 @@ const onBannerChange = (e:any) => {
                 <Tab eventKey="role" title="Roles/Permissions">
                   <GlobalPermissions />
                 </Tab>
-                <Tab eventKey="drag" title="Drag">
+                {/* <Tab eventKey="drag" title="Drag">
                   <HorizontalExample />
-                </Tab>
+                </Tab> */}
               </Tabs>
             </div>
           </Col>

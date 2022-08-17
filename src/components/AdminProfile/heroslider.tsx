@@ -4,8 +4,7 @@ import {useState, useContext} from 'react'
 import { ThemeContext } from '../../providers';
 import { Container, Button, Row, Col, Form, Image, Tabs, Tab, Stack, Card, Dropdown } from 'react-bootstrap';
 import BootstrapSwitchButton from 'bootstrap-switch-button-react';
-import { durations } from '../../store';
-import * as React from 'react';
+
 import RLDD from 'react-list-drag-and-drop/lib/RLDD';
 
 const fruits = require('./fruits.json');
